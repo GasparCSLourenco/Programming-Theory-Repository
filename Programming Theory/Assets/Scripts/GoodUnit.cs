@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GoodUnit : Unit
 {
+
+    public int pointDiff = 500;
+    private float speedDiff = 3.5f;
+
 	public override void Move()
 	{
 		throw new System.NotImplementedException();
@@ -18,6 +22,6 @@ public class GoodUnit : Unit
     // Update is called once per frame
     void Update()
     {
-        
+        gameObject.transform.Translate(0, 0, Time.deltaTime * (moveSpeed - speedDiff));
     }
 }

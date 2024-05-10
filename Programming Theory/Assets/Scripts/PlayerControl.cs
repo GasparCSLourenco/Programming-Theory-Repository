@@ -17,6 +17,8 @@ public class PlayerControl : MonoBehaviour
 	float direction = 0;
 	private float horizontalBound = 2.0f;
 
+	public GameManager gameManager;
+
 	private void Awake()
 	{
 		controller = gameObject.GetComponent<CharacterController>();
@@ -39,6 +41,20 @@ public class PlayerControl : MonoBehaviour
 		Spin();
 		BoundMovement();
 
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.CompareTag("Enemy"))
+		{
+			gameManager.ChangePoint(other.GetComponent<BadUnit>().pointDiff);
+			Destroy(other.gameObject);
+		}
+		else if (other.CompareTag("Friend"))
+		{
+			gameManager.ChangePoint(other.GetComponent<GoodUnit>().pointDiff);
+			Destroy(other.gameObject);
+		}
 	}
 
 	private void MovePlayer()
@@ -65,10 +81,10 @@ public class PlayerControl : MonoBehaviour
 	{
 		if (playerControls.Player.Movement.ReadValue<Vector2>().x != 0)
 		{
-			direction = playerControls.Player.Movement.ReadValue<Vector2>().x;
+			direction = playerControls.Player.Movement.ReadValue<Vector2>().x; //Reads the x value of player movement. Left -> x<0 | Right -> x>0
 		}
 
-		gameObject.transform.Rotate(0, 0, 5 * direction);
+		gameObject.transform.Rotate(0, 0, 5 * direction); //Change direction of spin based on player rotation
 	}
 
 	void BoundMovement()

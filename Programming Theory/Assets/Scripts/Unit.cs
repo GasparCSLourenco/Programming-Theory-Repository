@@ -5,15 +5,14 @@ using UnityEngine;
 
 public abstract class Unit : MonoBehaviour
 {
-    [SerializeField]
-    private int pointDiff;
-    public GameObject pointManager;
+	public static float moveSpeed { get; set; }
 
-    // Start is called before the first frame update
-    void Start()
+	// Start is called before the first frame update
+	void Start()
     {
-        pointManager = GameObject.Find("Point Manager");
-    }
+		MovePlane movePlane = new();
+		moveSpeed = movePlane.PlaneSpeed;
+	}
 
     // Update is called once per frame
     void Update()
@@ -21,14 +20,6 @@ public abstract class Unit : MonoBehaviour
         
     }
 
-	private void OnCollisionEnter(Collision collision)
-	{
-		if(collision.gameObject.name== "Player") 
-        {
-            pointManager.GetComponent<PointSystem>().ChangePoint(pointDiff);
-        }
-	}
-
-    public abstract void Move();
+	public abstract void Move();
     
 }

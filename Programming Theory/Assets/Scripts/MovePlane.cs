@@ -7,6 +7,8 @@ public class MovePlane : MonoBehaviour
 
     [SerializeField] private float planeSpeed = 3.0f;
 
+    public float PlaneSpeed => planeSpeed;
+
     // Start is called before the first frame update
     void Start()
     {

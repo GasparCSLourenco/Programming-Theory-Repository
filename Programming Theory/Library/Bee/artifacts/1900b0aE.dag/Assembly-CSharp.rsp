@@ -356,13 +356,13 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 -analyzer:"C:/Unity Projects/2022.3.13f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Unity Projects/2022.3.13f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
+"Assets/GameManager.cs"
 "Assets/Input/PlayerControls.cs"
 "Assets/PBR_Grass_Textures/Scripts/CameraFreeflight.cs"
 "Assets/Scripts/BadUnit.cs"
 "Assets/Scripts/GoodUnit.cs"
 "Assets/Scripts/MovePlane.cs"
 "Assets/Scripts/PlayerControl.cs"
-"Assets/Scripts/PointSystem.cs"
 "Assets/Scripts/Unit.cs"
 -langversion:9.0
 
