@@ -6,7 +6,10 @@ using UnityEngine;
 
 public abstract class Unit : MonoBehaviour
 {
-	public static float moveSpeed { get; set; }
+	public static float moveSpeed { get; set; } //Encapsulation
+	protected static float horizontalBound = 2f;
+
+	public float HorizontalBound => horizontalBound;
 
 	// Start is called before the first frame update
 	void Start()

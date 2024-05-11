@@ -17,7 +17,7 @@ public class PlayerControl : MonoBehaviour
 	private float horizontalBound = 2.0f;
 
 	public GameManager gameManager;
-	[SerializeField] private int playerLives = 3;
+	public int PlayerLives { get; private set; } = 3;
 
 
 	private void Awake()
@@ -55,7 +55,7 @@ public class PlayerControl : MonoBehaviour
 			if (other.GetComponent<BadUnit>().dealsDamage)
 			{
 				gameManager.GetComponent<LivesUI>().RemoveLife();
-				playerLives--;
+				PlayerLives--;
 			}
 		}
 		else if (other.CompareTag("Friend"))

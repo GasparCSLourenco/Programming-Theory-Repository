@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoodUnit : Unit
+public class GoodUnit : Unit //Inheritance
 {
 
     public int pointDiff = 500;

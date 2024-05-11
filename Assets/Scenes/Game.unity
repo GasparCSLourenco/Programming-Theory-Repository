@@ -553,7 +553,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 4
   gameManager: {fileID: 1160628711}
-  playerLives: 3
 --- !u!1 &564945863
 GameObject:
   m_ObjectHideFlags: 0
@@ -1388,7 +1387,7 @@ MonoBehaviour:
   goodList:
   - {fileID: -1764870437326989619, guid: cdf40e53c6263c14c87cc8e15e9ed9e9, type: 3}
   time: 0
-  Points: 0
+  player: {fileID: 437977875}
 --- !u!114 &1160628712
 MonoBehaviour:
   m_ObjectHideFlags: 0

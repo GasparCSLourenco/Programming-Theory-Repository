@@ -1,10 +1,9 @@
-
-
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.IMGUI.Controls;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -13,21 +12,25 @@ public class GameManager : MonoBehaviour
 	public List<BadUnit> badList = new List<BadUnit>();
 	public List<GoodUnit> goodList = new List<GoodUnit>();
 
-
+	private string playerName;
 
 	public float time;
 
-	public int Points;
+	public int Points {get; private set;}
 	int damageRandomizer;
 	int spawnRate = 7;
 	float repeatRate = 2;
+
+	public PlayerControl player;
+
+
 	// Start is called before the first frame update
 	void Start()
 	{
 		time = Time.time;
 		InvokeRepeating("SpawnEnemy", 1, repeatRate);
 		InvokeRepeating("SpawnFriend", 1, 5);
-
+		playerName = MenuHandler.Instance.playerName;
 	}
 
 	// Update is called once per frame
@@ -40,6 +43,7 @@ public class GameManager : MonoBehaviour
 			time = Time.time;
 			spawnRate--;
 		}
+		GameOver();
 	}
 
 
@@ -48,7 +52,9 @@ public class GameManager : MonoBehaviour
 		BadUnit unit = badList[Random.Range(0, badList.Count - 1)];
 
 		damageRandomizer = Random.Range(0, 11);
-		var newUnit = Instantiate(unit, new Vector3(0, .45f, 22), unit.transform.rotation);
+		float xPosition = Random.Range(unit.HorizontalBound, unit.HorizontalBound);
+
+		var newUnit = Instantiate(unit, new Vector3(xPosition, .45f, 22), unit.transform.rotation);
 
 		if (damageRandomizer > spawnRate)
 		{
@@ -67,5 +73,15 @@ public class GameManager : MonoBehaviour
 	public void ChangePoint(int points)
 	{
 		Points += points;
+	}
+
+
+	void GameOver()
+	{
+		if (player.PlayerLives <= 0)
+		{
+			MenuHandler.Instance.SaveHighScore(playerName,Points);
+			SceneManager.LoadScene(0);
+		}
 	}
 }

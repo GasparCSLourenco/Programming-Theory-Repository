@@ -9,7 +9,6 @@ public class BadUnit : Unit
 	[SerializeField]
 	private float strafeSpeed;
 
-	float horizontalBound;
 	[SerializeField]
 	private float speedDiff;
 

@@ -26,6 +26,5 @@ public class LivesUI : MonoBehaviour
         var life = livesSlots.First();
         life.gameObject.SetActive(false);
         livesSlots.Remove(life);
-        
     }
 }
