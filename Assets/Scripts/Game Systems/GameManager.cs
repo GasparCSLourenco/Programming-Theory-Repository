@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
 	public PlayerControl player;
 
+	public bool isGameOver;
+
 
 	// Start is called before the first frame update
 	void Start()
@@ -36,14 +38,23 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (Time.time - time > 30)
+		if (Time.time - time > 15)
 		{
 			CancelInvoke("SpawnEnemy");
 			InvokeRepeating("SpawnEnemy", 1, repeatRate - 0.3f);
 			time = Time.time;
 			spawnRate--;
 		}
-		GameOver();
+		
+		if(player.PlayerLives <= 0)
+		{
+			isGameOver = true;
+		}
+
+		if(isGameOver)
+		{
+			GameOver();
+		}
 	}
 
 
@@ -78,12 +89,19 @@ public class GameManager : MonoBehaviour
 
 	void GameOver()
 	{
-		if (player.PlayerLives <= 0)
+		isGameOver = false;
+		SoundHandler soundHandler = GetComponent<SoundHandler>();
+		soundHandler.PlayDeathSound();
+		if(Points > MenuHandler.Instance.highScore)
 		{
-			SoundHandler soundHandler = GetComponent<SoundHandler>();
-			soundHandler.PlayDeathSound();
-			MenuHandler.Instance.SaveHighScore(playerName,Points);
-			SceneManager.LoadScene(0);
+			MenuHandler.Instance.SaveHighScore(playerName, Points);
 		}
+		StartCoroutine("GameOverDelay");
+	}
+
+	IEnumerator GameOverDelay()
+	{
+		yield return new WaitForSeconds(0.5f);
+		SceneManager.LoadScene(0);
 	}
 }

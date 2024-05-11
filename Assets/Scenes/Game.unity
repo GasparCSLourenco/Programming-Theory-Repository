@@ -1390,6 +1390,7 @@ MonoBehaviour:
   - {fileID: -1764870437326989619, guid: cdf40e53c6263c14c87cc8e15e9ed9e9, type: 3}
   time: 0
   player: {fileID: 437977875}
+  isGameOver: 0
 --- !u!114 &1160628712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1530,7 +1531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgMusic: {fileID: 8300000, guid: 89f935015cc98724a862a586326fdf21, type: 3}
   dmgSound: {fileID: 8300000, guid: 3a71a8b0e6c4c0842980e21cd658ad9a, type: 3}
-  deathSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: d31bacfe6a0935b449f374fed9bb6567, type: 3}
   pointPickupSound: {fileID: 8300000, guid: 41cfd9d5497136546aec1b9eace0231f, type: 3}
 --- !u!1 &1165139358
 GameObject:
