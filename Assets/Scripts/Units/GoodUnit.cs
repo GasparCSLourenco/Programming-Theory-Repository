@@ -23,5 +23,14 @@ public class GoodUnit : Unit
     void Update()
     {
         gameObject.transform.Translate(0, 0, Time.deltaTime * (moveSpeed - speedDiff));
+		Despawn();
     }
+
+	public override void Despawn()
+	{
+		if (transform.position.z < -5)
+		{
+			Destroy(gameObject);
+		}
+	}
 }

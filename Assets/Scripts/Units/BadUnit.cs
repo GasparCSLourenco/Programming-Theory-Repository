@@ -14,6 +14,8 @@ public class BadUnit : Unit
 	private float speedDiff;
 
 	public int pointDiff;
+	[SerializeField]
+	public bool dealsDamage { get; set;}
 
 
 	public BadUnit()
@@ -35,14 +37,31 @@ public class BadUnit : Unit
 	void Update()
 	{
 		Move();
+		Despawn();
 	}
 
 	public override void Move()
 	{
-		if (transform.position.x > horizontalBound || transform.position.x < -horizontalBound)
+		if (transform.position.x > horizontalBound)
 		{
 			strafeSpeed *= -1;
+			transform.position = new Vector3(horizontalBound,transform.position.y,transform.position.z);
 		}
+		else if(transform.position.x < -horizontalBound)
+		{
+			strafeSpeed *= -1;
+			transform.position = new Vector3(-horizontalBound, transform.position.y, transform.position.z);
+		}
+
 		gameObject.transform.Translate(Time.deltaTime * strafeSpeed, 0, Time.deltaTime * (moveSpeed - speedDiff));
+
+	}
+
+	public override void Despawn()
+	{
+		if (transform.position.z < -5)
+		{
+			Destroy(gameObject);
+		}
 	}
 }

@@ -15,8 +15,8 @@ public class GameManager : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-		InvokeRepeating("SpawnEnemy", 1, 3);
-		InvokeRepeating("SpawnFriend", 1, 3);
+		InvokeRepeating("SpawnEnemy", 1, 2);
+		InvokeRepeating("SpawnFriend", 1, 5);
 
 	}
 
@@ -30,8 +30,20 @@ public class GameManager : MonoBehaviour
     { 
         BadUnit unit = badList[Random.Range(0,badList.Count-1)];
 
-        Instantiate(unit, new Vector3(0, .45f, 22), unit.transform.rotation);
-    }
+		int damageRandomizer = Random.Range(0, 11);
+
+		
+		var newUnit = Instantiate(unit, new Vector3(0, .45f, 22), unit.transform.rotation);
+
+		if (damageRandomizer > 7)
+		{
+			newUnit.gameObject.GetComponent<MeshRenderer>().material.color = Color.black;
+			newUnit.gameObject.GetComponent<BadUnit>().dealsDamage = true;
+			newUnit.gameObject.GetComponent<BadUnit>().pointDiff = 0;
+		}
+		
+
+	}
 
     void SpawnFriend()
     {

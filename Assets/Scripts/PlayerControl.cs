@@ -19,10 +19,14 @@ public class PlayerControl : MonoBehaviour
 
 	public GameManager gameManager;
 
+	public int playerLives = 3;
+
+	public LifeSlot[] livesSlots;
 	private void Awake()
 	{
 		controller = gameObject.GetComponent<CharacterController>();
 		playerControls = new PlayerControls();
+		
 	}
 
 	void OnEnable()
@@ -49,6 +53,11 @@ public class PlayerControl : MonoBehaviour
 		{
 			gameManager.ChangePoint(other.GetComponent<BadUnit>().pointDiff);
 			Destroy(other.gameObject);
+
+			if (other.GetComponent<BadUnit>().dealsDamage)
+			{
+				gameManager.GetComponent<LivesUI>().RemoveLife();
+			}
 		}
 		else if (other.CompareTag("Friend"))
 		{

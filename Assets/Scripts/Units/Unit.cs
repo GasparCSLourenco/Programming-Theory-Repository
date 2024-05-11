@@ -21,5 +21,7 @@ public abstract class Unit : MonoBehaviour
     }
 
 	public abstract void Move();
+
+	public abstract void Despawn();
     
 }
