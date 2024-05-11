@@ -6,27 +6,22 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerControl : MonoBehaviour
 {
+	private PlayerControls playerControls;
 	private CharacterController controller;
 	private Vector3 playerVelocity;
 	private bool groundedPlayer;
 	[SerializeField]
 	private float playerSpeed = 2.0f;
 	private float gravityValue = -9.81f;
-
-	private PlayerControls playerControls;
 	float direction = 0;
 	private float horizontalBound = 2.0f;
 
-	public GameManager gameManager;
 
-	public int playerLives = 3;
-
-	public LifeSlot[] livesSlots;
 	private void Awake()
 	{
 		controller = gameObject.GetComponent<CharacterController>();
 		playerControls = new PlayerControls();
-		
+
 	}
 
 	void OnEnable()
@@ -57,6 +52,7 @@ public class PlayerControl : MonoBehaviour
 			if (other.GetComponent<BadUnit>().dealsDamage)
 			{
 				gameManager.GetComponent<LivesUI>().RemoveLife();
+				playerLives--;
 			}
 		}
 		else if (other.CompareTag("Friend"))
