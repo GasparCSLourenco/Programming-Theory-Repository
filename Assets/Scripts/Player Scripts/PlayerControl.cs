@@ -56,12 +56,19 @@ public class PlayerControl : MonoBehaviour
 			{
 				gameManager.GetComponent<LivesUI>().RemoveLife();
 				PlayerLives--;
+				SoundHandler soundHandler = gameManager.GetComponent<SoundHandler>();
+
+				soundHandler.PlayDmgSound();
 			}
 		}
 		else if (other.CompareTag("Friend"))
 		{
 			gameManager.ChangePoint(other.GetComponent<GoodUnit>().pointDiff);
 			Destroy(other.gameObject);
+
+			SoundHandler soundHandler = gameManager.GetComponent<SoundHandler>();
+
+			soundHandler.PlayPointPickupSound();
 		}
 	}
 

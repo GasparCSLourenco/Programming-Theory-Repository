@@ -80,6 +80,8 @@ public class GameManager : MonoBehaviour
 	{
 		if (player.PlayerLives <= 0)
 		{
+			SoundHandler soundHandler = GetComponent<SoundHandler>();
+			soundHandler.PlayDeathSound();
 			MenuHandler.Instance.SaveHighScore(playerName,Points);
 			SceneManager.LoadScene(0);
 		}
