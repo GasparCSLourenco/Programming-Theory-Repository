@@ -38,6 +38,7 @@ public class BadUnit : Unit
 	{
 		Move();
 		Despawn();
+
 	}
 
 	public override void Move()
