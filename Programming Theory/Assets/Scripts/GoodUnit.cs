@@ -8,9 +8,14 @@ public class GoodUnit : Unit
     public int pointDiff = 500;
     private float speedDiff = 3.5f;
 
+	public override void DeSpawn()
+	{
+		base.DeSpawn();
+	}
+
 	public override void Move()
 	{
-		throw new System.NotImplementedException();
+		gameObject.transform.Translate(0, 0, Time.deltaTime * (moveSpeed - speedDiff));
 	}
 
 	// Start is called before the first frame update
@@ -22,6 +27,7 @@ public class GoodUnit : Unit
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.Translate(0, 0, Time.deltaTime * (moveSpeed - speedDiff));
+		Move();
+		DeSpawn();
     }
 }

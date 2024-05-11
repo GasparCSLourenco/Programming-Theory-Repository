@@ -35,6 +35,7 @@ public class BadUnit : Unit
 	void Update()
 	{
 		Move();
+		DeSpawn();
 	}
 
 	public override void Move()
@@ -44,5 +45,10 @@ public class BadUnit : Unit
 			strafeSpeed *= -1;
 		}
 		gameObject.transform.Translate(Time.deltaTime * strafeSpeed, 0, Time.deltaTime * (moveSpeed - speedDiff));
+	}
+
+	public override void DeSpawn()
+	{
+		base.DeSpawn();
 	}
 }
