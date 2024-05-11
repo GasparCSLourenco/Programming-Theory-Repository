@@ -16,6 +16,9 @@ public class PlayerControl : MonoBehaviour
 	float direction = 0;
 	private float horizontalBound = 2.0f;
 
+	public GameManager gameManager;
+	[SerializeField] private int playerLives = 3;
+
 
 	private void Awake()
 	{

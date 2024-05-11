@@ -18,7 +18,7 @@ public abstract class Unit : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		DeSpawn();
+		
 	}
 
 	public abstract void Move();
